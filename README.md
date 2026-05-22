@@ -59,7 +59,7 @@ README.md                # This file
 
 1. Download the plugin files for the latest [Release](https://github.com/dougcooper/sp-dashboard/releases)
 2. Open Super Productivity
-3. Go to Settings → Plugins
+3. Go to Settings -> Plugins
 4. Click "Load Plugin from Folder"
 5. Select the `sp-dashboard` zip file
 6. The plugin will be activated automatically

@@ -362,8 +362,7 @@ describe("Date Range Reporter UI", () => {
 			const pieSelect = document.getElementById("pie-chart-select");
 			const barContainer = document.getElementById("bar-chart-container");
 
-			// bar count limits for presets
-			// month (≤31 days) → one bar per day; year (>31 days) → one bar per week (~52-53)
+			// bar count limits for presets - grouping is always daily by default (no auto-bucketing)
 			const preset = document.getElementById("date-preset");
 			preset.value = "month";
 			preset.dispatchEvent(new Event("change"));
@@ -376,7 +375,7 @@ describe("Date Range Reporter UI", () => {
 			window.processData([overdueTask, lateTask], []);
 			expect(
 				barContainer.querySelectorAll(".bar-col").length,
-			).toBeLessThanOrEqual(54);
+			).toBeLessThanOrEqual(366);
 
 			barSelect.value = "overdue";
 			window.updateBarChart();
@@ -405,9 +404,112 @@ describe("Date Range Reporter UI", () => {
 			// one bar column for a single-day range
 			expect(barContainer.querySelectorAll(".bar-col").length).toBe(1);
 			// label should be today in MM-DD format (default setting)
-			const label = barContainer.querySelector(".bar-label");
+			const label = barContainer.querySelector(".x-label");
 			const today = new Date().toISOString().split("T")[0];
 			expect(label.textContent).toBe(today.substring(5)); // MM-DD
+		});
+
+		it("weekly grouping produces fewer bar columns than daily for a month range", () => {
+			const preset = document.getElementById("date-preset");
+			preset.value = "month";
+			preset.dispatchEvent(new Event("change"));
+			window.processData([], []);
+
+			const barContainer = document.getElementById("bar-chart-container");
+			const dailyCount = barContainer.querySelectorAll(".bar-col").length;
+			expect(dailyCount).toBeGreaterThan(4);
+
+			document.getElementById("setting-bar-grouping").value = "weekly";
+			document
+				.getElementById("setting-bar-grouping")
+				.dispatchEvent(new Event("change"));
+			const weeklyCount = barContainer.querySelectorAll(".bar-col").length;
+			expect(weeklyCount).toBeLessThan(dailyCount);
+			expect(weeklyCount).toBeLessThanOrEqual(5);
+
+			// restore
+			document.getElementById("setting-bar-grouping").value = "daily";
+			document
+				.getElementById("setting-bar-grouping")
+				.dispatchEvent(new Event("change"));
+		});
+
+		it("monthly grouping collapses a year range to at most 12 bar columns", () => {
+			const preset = document.getElementById("date-preset");
+			preset.value = "year";
+			preset.dispatchEvent(new Event("change"));
+			window.processData([], []);
+
+			document.getElementById("setting-bar-grouping").value = "monthly";
+			document
+				.getElementById("setting-bar-grouping")
+				.dispatchEvent(new Event("change"));
+
+			const barContainer = document.getElementById("bar-chart-container");
+			// a year range spans up to 13 calendar months (e.g. May '25 -> May '26)
+			expect(
+				barContainer.querySelectorAll(".bar-col").length,
+			).toBeLessThanOrEqual(13);
+
+			document.getElementById("setting-bar-grouping").value = "daily";
+			document
+				.getElementById("setting-bar-grouping")
+				.dispatchEvent(new Event("change"));
+		});
+
+		it("measure row is hidden when grouping is daily and visible when weekly", () => {
+			const aggRow = document.getElementById("setting-bar-agg-row");
+			expect(aggRow.style.display).toBe("none");
+
+			document.getElementById("setting-bar-grouping").value = "weekly";
+			document
+				.getElementById("setting-bar-grouping")
+				.dispatchEvent(new Event("change"));
+			expect(aggRow.style.display).not.toBe("none");
+
+			document.getElementById("setting-bar-grouping").value = "daily";
+			document
+				.getElementById("setting-bar-grouping")
+				.dispatchEvent(new Event("change"));
+			expect(aggRow.style.display).toBe("none");
+		});
+
+		it("x-axis labels use .x-label class and are positioned as percentage left", () => {
+			const preset = document.getElementById("date-preset");
+			preset.value = "week";
+			preset.dispatchEvent(new Event("change"));
+			window.processData([], []);
+
+			const barContainer = document.getElementById("bar-chart-container");
+			const labels = barContainer.querySelectorAll(".x-label");
+			expect(labels.length).toBeGreaterThan(0);
+			labels.forEach((lbl) => {
+				expect(lbl.style.left).toMatch(/%$/);
+			});
+		});
+
+		it("billable panel is hidden when project breakdown type is not billable", () => {
+			const pieSelect = document.getElementById("pie-chart-select");
+			const billablePanel = document.getElementById("billable-panel");
+
+			// need data so updatePieChart doesn't exit early
+			window.processData([], []);
+
+			pieSelect.value = "completed";
+			window.updatePieChart();
+			expect(billablePanel.classList.contains("hidden")).toBe(true);
+
+			pieSelect.value = "time";
+			window.updatePieChart();
+			expect(billablePanel.classList.contains("hidden")).toBe(true);
+
+			pieSelect.value = "billable";
+			window.updatePieChart();
+			expect(billablePanel.classList.contains("hidden")).toBe(false);
+
+			pieSelect.value = "completed";
+			window.updatePieChart();
+			expect(billablePanel.classList.contains("hidden")).toBe(true);
 		});
 
 		it("detail list columns are sortable when headers are clicked", () => {

@@ -91,6 +91,9 @@
       cursor: pointer;
       padding: 0;
     }
+    /* Controls row - uniform compact sizing */
+    #date-preset, input[type="date"] { font-size: 0.875rem; }
+    /* color-scheme on date inputs is set dynamically based on detected theme */
     select option {
       background: var(--card-bg, #1e1e1e);
       color: var(--text-color, #fff);
@@ -187,7 +190,7 @@
     .chart-card { display: flex; flex-direction: column; }
     .chart-container { position: relative; flex: 1; min-height: 200px; width: 100%; display: flex; justify-content: center; }
 
-    /* Bar chart — outer container scrolls horizontally if bars overflow */
+    /* Bar chart - outer container scrolls horizontally if bars overflow */
     .bar-chart { display: flex; flex-direction: column; width: 100%; height: 100%; overflow-x: auto; overflow-y: hidden; }
     /* Canvas stretches to bars' natural width; both bars-body and x-axis share that width */
     .bar-chart-canvas { display: flex; flex-direction: column; width: 100%; height: 100%; }
@@ -195,7 +198,7 @@
     .bar-col { display: flex; flex-direction: column; align-items: center; flex: 1; min-width: 8px; }
     .bar-area { flex: 1; width: 100%; display: flex; align-items: flex-end; padding-top: 0.5rem; }
     .bar { width: 100%; background: var(--c-primary, #03a9f4); border-radius: 3px 3px 0 0; min-height: 2px; transition: height 0.3s; position: relative; }
-    /* Dedicated x-axis strip — labels positioned independently of bar width */
+    /* Dedicated x-axis strip - labels positioned independently of bar width */
     .x-axis { flex-shrink: 0; height: 20px; position: relative; }
     .x-label { position: absolute; transform: translateX(-50%); font-size: 0.6rem; color: var(--text-color-muted, #9e9e9e); white-space: nowrap; top: 3px; }
 
@@ -326,6 +329,7 @@
     }
 
     /* --- BILLABLE DAYS PANEL --- */
+    .billable-panel.hidden { display: none; }
     .billable-panel {
       display: flex;
       align-items: flex-end;
@@ -403,11 +407,11 @@
       <div class="controls">
         <!-- Custom Date Pickers (Hidden by default) -->
         <div id="custom-date-container" class="control-box hidden" style="flex-direction: row; gap: var(--s2, 1rem);">
-          <div style="display: flex; flex-direction: column;">
+          <div style="display: flex; flex-direction: column; gap: 4px;">
             <label for="date-from">From</label>
             <input type="date" id="date-from">
           </div>
-          <div style="display: flex; flex-direction: column;">
+          <div style="display: flex; flex-direction: column; gap: 4px;">
             <label for="date-to">To</label>
             <input type="date" id="date-to">
           </div>
@@ -417,11 +421,11 @@
         <div class="control-box">
           <label for="date-preset">Period</label>
           <select id="date-preset">
-            <option value="today">Today</option>
-            <option value="week" selected>Past Week</option>
+            <option value="today" selected>Today</option>
+            <option value="week">Past Week</option>
             <option value="month">Past Month</option>
             <option value="year">Past Year</option>
-            <option value="custom">Custom Range...</option>
+            <option value="custom">Custom range [From-To]</option>
           </select>
         </div>
 
@@ -746,12 +750,21 @@
       return formatDateShort(dateStr);
     };
 
+    // Always work in local dates to match how SP stores timeSpentOnDay keys
+    const toLocalDateStr = (d) => {
+      const y = d.getFullYear();
+      const m = String(d.getMonth() + 1).padStart(2, '0');
+      const day = String(d.getDate()).padStart(2, '0');
+      return `${y}-${m}-${day}`;
+    };
+
     const getDatesInRange = (startDate, endDate) => {
       const dates = [];
-      const currentDate = new Date(startDate);
-      const end = new Date(endDate);
+      // Parse as local midnight so getDate/setDate stay in local time
+      const currentDate = new Date(`${startDate}T00:00:00`);
+      const end = new Date(`${endDate}T00:00:00`);
       while (currentDate <= end) {
-        dates.push(new Date(currentDate).toISOString().split('T')[0]);
+        dates.push(toLocalDateStr(currentDate));
         currentDate.setDate(currentDate.getDate() + 1);
       }
       return dates;
@@ -880,7 +893,7 @@
       document.getElementById('billable-days').value = '';
       lastEditedBillable = 'hpd';
       // Session defaults
-      document.getElementById('date-preset').value = 'week';
+      document.getElementById('date-preset').value = 'today';
       document.getElementById('custom-date-container').classList.add('hidden');
       // Reset project filter to All
       const dd = document.getElementById('project-filter-dropdown');
@@ -1106,8 +1119,8 @@
     };
 
     const updateBarChart = () => {
-      if (!latestMetrics) return;
       syncAggRow();
+      if (!latestMetrics) return;
       updateBarChartTitle();
       const type = document.getElementById('bar-chart-select').value;
       if (type === 'time') {
@@ -1176,7 +1189,7 @@
         : sum;
 
       if (grouping === 'weekly') {
-        const weekMap = new Map(); // Monday YYYY-MM-DD → { sum, count, workdays }
+        const weekMap = new Map(); // Monday YYYY-MM-DD -> { sum, count, workdays }
         chartData.labels.forEach((dateStr, i) => {
           const d = new Date(`${dateStr}T00:00:00`);
           const dow = d.getDay();
@@ -1196,7 +1209,7 @@
           val: applyAgg(acc),
         }));
       } else if (grouping === 'monthly') {
-        const monthMap = new Map(); // 'YYYY-MM' → { sum, count, workdays }
+        const monthMap = new Map(); // 'YYYY-MM' -> { sum, count, workdays }
         chartData.labels.forEach((dateStr, i) => {
           const ym = dateStr.substring(0, 7);
           const dow = new Date(`${dateStr}T00:00:00`).getDay();
@@ -1221,7 +1234,7 @@
       }
 
       const maxVal = Math.max(...bars.map(b => b.val), 1);
-      // At most 8 visible tick labels — enough to orient without overlap at any bar width
+      // At most 8 visible tick labels - enough to orient without overlap at any bar width
       const n = bars.length;
       const labelStep = Math.max(1, Math.ceil(n / 8));
 
@@ -1454,8 +1467,8 @@
         } else if (preset === 'year') {
           startObj.setFullYear(endObj.getFullYear() - 1);
         }
-        dateFromStr = startObj.toISOString().split('T')[0];
-        dateToStr = endObj.toISOString().split('T')[0];
+        dateFromStr = toLocalDateStr(startObj);
+        dateToStr = toLocalDateStr(endObj);
       }
       const dateRange = getDatesInRange(dateFromStr, dateToStr);
       console.log("[sp-dashboard] computed date range", dateFromStr, dateToStr, dateRange);
@@ -1756,11 +1769,22 @@
       console.log("[sp-dashboard] message event received in iframe");
       console.log(event.data)
       if (event.data && event.data.type === 'SP_STATE_CHANGED') {
+        applyDatePickerTheme();
         pullDataFromSP();
       }
     });
 
     // Restore persisted settings and session before first render
+    // Apply color-scheme to date inputs based on the host app's background variable
+    const applyDatePickerTheme = () => {
+      const bg = getComputedStyle(document.documentElement).getPropertyValue('--bg').trim();
+      const hex = bg.replace('#', '');
+      const r = parseInt(hex.slice(0, 2), 16);
+      const scheme = (Number.isNaN(r) || r < 128) ? 'dark' : 'light';
+      document.querySelectorAll('input[type="date"]').forEach(el => { el.style.colorScheme = scheme; });
+    };
+    applyDatePickerTheme();
+
     loadSettings();
     syncPieCategories();
     syncAggRow();

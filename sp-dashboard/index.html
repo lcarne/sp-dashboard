@@ -142,8 +142,8 @@
     }
     
     .view-content.no-padding { padding: 0; }
-    .hidden { display: none !important; }
-    .text-red { color: #f87171 !important; }
+    .hidden { display: none; }
+    .text-red { color: #f87171; }
 
     /* --- DASHBOARD GRID --- */
     .grid-3 { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: var(--s3, 1.5rem); margin-bottom: var(--s3, 1.5rem); }
@@ -356,6 +356,7 @@
       outline: none;
       padding: 2px 0;
       -moz-appearance: textfield;
+      appearance: textfield;
     }
     .billable-field input[type=number]::-webkit-outer-spin-button,
     .billable-field input[type=number]::-webkit-inner-spin-button { -webkit-appearance: none; appearance: none; }
@@ -437,8 +438,8 @@
     <div class="main-card">
       <!-- Tabs -->
       <div class="tabs">
-        <button id="tab-btn-dashboard" class="tab-btn active" onclick="switchTab('dashboard')">Dashboard</button>
-        <button id="tab-btn-details" class="tab-btn" onclick="switchTab('details')">Detailed List</button>
+        <button type="button" id="tab-btn-dashboard" class="tab-btn active" onclick="switchTab('dashboard')">Dashboard</button>
+        <button type="button" id="tab-btn-details" class="tab-btn" onclick="switchTab('details')">Detailed List</button>
         <button type="button" id="tab-btn-settings" class="tab-btn" onclick="switchTab('settings')">Settings</button>
       </div>
 
@@ -453,7 +454,7 @@
           <div class="stat-card">
             <div class="stat-header">
               <h3 class="stat-title">Total Time Tracked</h3>
-              <div class="stat-icon" style="background: rgba(96, 165, 250, 0.1); color: #60a5fa;"><svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg></div>
+              <div class="stat-icon" style="background: rgba(96, 165, 250, 0.1); color: #60a5fa;"><svg aria-hidden="true" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg></div>
             </div>
             <div class="stat-value-container">
               <span class="stat-value" id="stat-time">0h 0m</span>
@@ -463,7 +464,7 @@
           <div class="stat-card">
             <div class="stat-header">
               <h3 class="stat-title">Tasks Completed</h3>
-              <div class="stat-icon" style="background: rgba(74, 222, 128, 0.1); color: #4ade80;"><svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg></div>
+              <div class="stat-icon" style="background: rgba(74, 222, 128, 0.1); color: #4ade80;"><svg aria-hidden="true" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg></div>
             </div>
             <div class="stat-value-container">
               <span class="stat-value" id="stat-tasks">0</span>
@@ -477,7 +478,7 @@
           <div class="stat-card">
             <div class="stat-header">
               <h3 class="stat-title">Overdue Tasks</h3>
-              <div class="stat-icon badge-red"><svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg></div>
+              <div class="stat-icon badge-red"><svg aria-hidden="true" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg></div>
             </div>
             <div class="stat-value-container" style="align-items: center;">
               <div>
@@ -492,7 +493,7 @@
           <div class="stat-card">
             <div class="stat-header">
               <h3 class="stat-title">Completed Late</h3>
-              <div class="stat-icon" style="background: rgba(251, 191, 36, 0.1); color: #fbbf24;"><svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg></div>
+              <div class="stat-icon" style="background: rgba(251, 191, 36, 0.1); color: #fbbf24;"><svg aria-hidden="true" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg></div>
             </div>
             <div class="stat-value-container">
               <span class="stat-value" id="stat-late">0</span>
@@ -1268,7 +1269,7 @@
       const bars = document.querySelectorAll('.bar-chart .bar');
       
       bars.forEach(bar => {
-        bar.addEventListener('mouseenter', (e) => {
+        bar.addEventListener('mouseenter', () => {
           const label = bar.getAttribute('data-label');
           const val = bar.getAttribute('data-val');
           tooltip.textContent = label ? `${label}: ${val}` : val;
@@ -1381,7 +1382,7 @@
       if (task.dueDay) {
         // parse original YYYY-MM-DD string – Date.parse yields UTC midnight
         const parsed = Date.parse(task.dueDay);
-        if (!isNaN(parsed)) {
+        if (!Number.isNaN(parsed)) {
           dueStart = parsed; // no timezone shift
         }
       }
@@ -1429,7 +1430,7 @@
       const restoreIds = pendingProjectRestore ? pendingProjectRestore.ids : currentChecked;
       pendingProjectRestore = null;
       makeOption('all', 'All Projects', restoreAll && restoreIds.size === 0);
-      projectsArr.forEach(p => makeOption(p.id, p.title, !restoreAll && restoreIds.has(p.id)));
+      projectsArr.forEach(p => { makeOption(p.id, p.title, !restoreAll && restoreIds.has(p.id)); });
       const hasUncategorized = tasksArr.some(t => !t.projectId || !projectsArr.find(p => p.id === t.projectId));
       if (hasUncategorized) makeOption('uncategorized', 'Uncategorized', !restoreAll && restoreIds.has('uncategorized'));
       updateProjectFilterBtn();
@@ -1461,7 +1462,7 @@
 
       // Build lookup maps for faster processing
       const projectMap = {};
-      projectsArr.forEach(p => projectMap[p.id] = p.title);
+      projectsArr.forEach(p => { projectMap[p.id] = p.title; });
       const projectColorMap = {};
       projectsArr.forEach((p, i) => { projectColorMap[p.title] = PIE_COLORS[i % PIE_COLORS.length]; });
       projectColorMap.Uncategorized = PIE_COLORS[projectsArr.length % PIE_COLORS.length];
@@ -1555,7 +1556,7 @@
           const dayEnd = dayStart + 86400000 - 1;
 
           // Time Spent Logging
-          const spentOnDate = task.timeSpentOnDay && task.timeSpentOnDay[dateStr];
+          const spentOnDate = task.timeSpentOnDay?.[dateStr];
           if (spentOnDate) {
             metrics.weeklyData.data[index] += spentOnDate;
             taskTimeInRange += spentOnDate;

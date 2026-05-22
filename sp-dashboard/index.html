@@ -705,7 +705,7 @@
     };
 
     const formatDateShort = (dateStr) => {
-      const d = new Date(dateStr + "T00:00:00");
+      const d = new Date(`${dateStr}T00:00:00`);
       return d.toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' });
     };
 
@@ -1277,8 +1277,8 @@
         
         bar.addEventListener('mousemove', (e) => {
           // Position tooltip at cursor with small offset
-          tooltip.style.left = (e.clientX + 8) + 'px';
-          tooltip.style.top = (e.clientY - 12) + 'px';
+          tooltip.style.left = `${e.clientX + 8}px`;
+          tooltip.style.top = `${e.clientY - 12}px`;
         });
         
         bar.addEventListener('mouseleave', () => {
@@ -1320,7 +1320,7 @@
           <div class="legend-item">
             <div class="legend-label">
               <span class="legend-dot" style="background: ${color}"></span>
-              <span title="${name}">${name.length > 20 ? name.substring(0,20)+'...' : name}</span>
+              <span title="${name}">${name.length > 20 ? `${name.substring(0, 20)}...` : name}</span>
             </div>
             <div class="legend-val">${displayVal}</div>
           </div>
@@ -1464,7 +1464,7 @@
       projectsArr.forEach(p => projectMap[p.id] = p.title);
       const projectColorMap = {};
       projectsArr.forEach((p, i) => { projectColorMap[p.title] = PIE_COLORS[i % PIE_COLORS.length]; });
-      projectColorMap['Uncategorized'] = PIE_COLORS[projectsArr.length % PIE_COLORS.length];
+      projectColorMap.Uncategorized = PIE_COLORS[projectsArr.length % PIE_COLORS.length];
 
       // Apply project filter
       const pfDropdown = document.getElementById('project-filter-dropdown');
@@ -1500,7 +1500,7 @@
 
       const now = Date.now();
       // define end-of-range timestamp for per-day overdue calculations
-      const rangeEndTime = new Date(dateToStr + "T23:59:59").getTime();
+      const rangeEndTime = new Date(`${dateToStr}T23:59:59`).getTime();
 
       const countedOverdue = new Set();
       filteredTasks.forEach(task => {
@@ -1551,7 +1551,7 @@
         }
 
         dateRange.forEach((dateStr, index) => {
-          const dayStart = new Date(dateStr + "T00:00:00").getTime();
+          const dayStart = new Date(`${dateStr}T00:00:00`).getTime();
           const dayEnd = dayStart + 86400000 - 1;
 
           // Time Spent Logging
@@ -1666,7 +1666,7 @@
       const doneTasks = filteredTasks.filter(t => t.isDone);
       const doneWithoutTimestamp = doneTasks.filter(t => !t.doneOn);
       console.log("[sp-dashboard] FINAL METRICS: totalCompleted=", metrics.totalCompleted, "totalTasks=", metrics.totalTasks);
-      console.log("[sp-dashboard] Done tasks in array (count=" + doneTasks.length + "):", doneTasks.map(t => ({ id: t.id, title: t.title, doneOn: t.doneOn })));
+      console.log(`[sp-dashboard] Done tasks in array (count=${doneTasks.length}):`, doneTasks.map(t => ({ id: t.id, title: t.title, doneOn: t.doneOn })));
       if (doneWithoutTimestamp.length > 0) {
         console.warn("[sp-dashboard] WARNING: done tasks missing doneOn timestamp:", doneWithoutTimestamp.map(t => ({ id: t.id, title: t.title })));
       }

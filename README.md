@@ -21,6 +21,9 @@ Below are screenshots of the plugin rendered outside of the host app (mock data 
 ![Detailed List View](assets/detailed_list.png)
 *Detailed list of individual time entries and task statuses.*
 
+![Settings View](assets/settings.png)
+*Settings panel - configure chart grouping, date formats, and project breakdown options.*
+
 *(Images are regenerated via the screenshot utility when the UI changes.)*
 
 - Native charts rendered with vanilla JS and CSS (no charting libraries)

@@ -400,26 +400,26 @@
     <!-- Header -->
     <header class="header">
       <div class="title-area">
-        <h1 class="title">Dashboard</h1>
-        <p class="subtitle">Select a time period to view metrics</p>
+        <h1 class="title" data-i18n="header.title">Dashboard</h1>
+        <p class="subtitle" data-i18n="header.subtitle">Select a time period to view metrics</p>
       </div>
       
       <div class="controls">
         <!-- Custom Date Pickers (Hidden by default) -->
         <div id="custom-date-container" class="control-box hidden" style="flex-direction: row; gap: var(--s2, 1rem);">
           <div style="display: flex; flex-direction: column; gap: 4px;">
-            <label for="date-from">From</label>
+            <label for="date-from" data-i18n="header.from">From</label>
             <input type="date" id="date-from">
           </div>
           <div style="display: flex; flex-direction: column; gap: 4px;">
-            <label for="date-to">To</label>
+            <label for="date-to" data-i18n="header.to">To</label>
             <input type="date" id="date-to">
           </div>
         </div>
 
         <!-- Preset Dropdown -->
         <div class="control-box">
-          <label for="date-preset">Period</label>
+          <label for="date-preset" data-i18n="header.period">Period</label>
           <select id="date-preset">
             <option value="today" selected>Today</option>
             <option value="week">Past Week</option>
@@ -431,7 +431,7 @@
 
         <!-- Project Filter (multi-select) -->
         <div class="control-box project-filter-box" style="position: relative;">
-          <label>Project</label>
+          <label data-i18n="header.project">Project</label>
           <button type="button" id="project-filter-btn" class="project-filter-btn">All Projects</button>
           <div id="project-filter-dropdown" class="project-filter-dropdown hidden"></div>
         </div>
@@ -442,9 +442,9 @@
     <div class="main-card">
       <!-- Tabs -->
       <div class="tabs">
-        <button type="button" id="tab-btn-dashboard" class="tab-btn active" onclick="switchTab('dashboard')">Dashboard</button>
-        <button type="button" id="tab-btn-details" class="tab-btn" onclick="switchTab('details')">Detailed List</button>
-        <button type="button" id="tab-btn-settings" class="tab-btn" onclick="switchTab('settings')">Settings</button>
+        <button type="button" id="tab-btn-dashboard" class="tab-btn active" onclick="switchTab('dashboard')" data-i18n="tab.dashboard">Dashboard</button>
+        <button type="button" id="tab-btn-details" class="tab-btn" onclick="switchTab('details')" data-i18n="tab.details">Detailed List</button>
+        <button type="button" id="tab-btn-settings" class="tab-btn" onclick="switchTab('settings')" data-i18n="tab.settings">Settings</button>
       </div>
 
       <!-- ========================================== -->
@@ -457,7 +457,7 @@
           
           <div class="stat-card">
             <div class="stat-header">
-              <h3 class="stat-title">Total Time Tracked</h3>
+              <h3 class="stat-title" data-i18n="stat.totalTime">Total Time Tracked</h3>
               <div class="stat-icon" style="background: rgba(96, 165, 250, 0.1); color: #60a5fa;"><svg aria-hidden="true" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg></div>
             </div>
             <div class="stat-value-container">
@@ -467,7 +467,7 @@
 
           <div class="stat-card">
             <div class="stat-header">
-              <h3 class="stat-title">Tasks Completed</h3>
+              <h3 class="stat-title" data-i18n="stat.completed">Tasks Completed</h3>
               <div class="stat-icon" style="background: rgba(74, 222, 128, 0.1); color: #4ade80;"><svg aria-hidden="true" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg></div>
             </div>
             <div class="stat-value-container">
@@ -481,22 +481,22 @@
 
           <div class="stat-card">
             <div class="stat-header">
-              <h3 class="stat-title">Overdue Tasks</h3>
+              <h3 class="stat-title" data-i18n="stat.overdue">Overdue Tasks</h3>
               <div class="stat-icon badge-red"><svg aria-hidden="true" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg></div>
             </div>
             <div class="stat-value-container" style="align-items: center;">
               <div>
                 <span class="stat-value" id="stat-overdue">0</span>
-                <span class="stat-suffix">tasks</span>
+                <span class="stat-suffix" data-i18n="stat.tasks">tasks</span>
               </div>
-              <span class="badge badge-red hidden" id="stat-overdue-label">Needs Attention</span>
+              <span class="badge badge-red hidden" id="stat-overdue-label" data-i18n="stat.needsAttention">Needs Attention</span>
               <div id="overdue-note" class="text-red" style="font-size:0.75rem; margin-top:4px; display:none;"></div>
             </div>
           </div>
 
           <div class="stat-card">
             <div class="stat-header">
-              <h3 class="stat-title">Completed Late</h3>
+              <h3 class="stat-title" data-i18n="stat.late">Completed Late</h3>
               <div class="stat-icon" style="background: rgba(251, 191, 36, 0.1); color: #fbbf24;"><svg aria-hidden="true" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg></div>
             </div>
             <div class="stat-value-container">
@@ -526,7 +526,7 @@
 
           <div class="chart-card">
             <div class="card-header">
-              <h3 class="card-title">Project Breakdown</h3>
+              <h3 class="card-title" data-i18n="pie.title">Project Breakdown</h3>
               <select id="pie-chart-select" class="chart-select" style="width:auto">
                 <option value="time">Time tracked</option>
                 <option value="completed" selected>Completed</option>
@@ -537,12 +537,12 @@
             </div>
             <div id="billable-panel" class="billable-panel hidden">
               <div class="billable-field">
-                <label for="billable-days">Billable days</label>
+                <label for="billable-days" data-i18n="billable.days">Billable days</label>
                 <input type="number" id="billable-days" min="0.01" step="0.5" placeholder="-">
               </div>
-              <span class="billable-sep">= total ÷</span>
+              <span class="billable-sep" data-i18n="billable.sep">= total ÷</span>
               <div class="billable-field">
-                <label for="billable-hpd">Hours / day</label>
+                <label for="billable-hpd" data-i18n="billable.hpd">Hours / day</label>
                 <input type="number" id="billable-hpd" min="0.01" step="0.25" value="8">
               </div>
               <div style="display:flex;flex-direction:column;align-items:flex-end;gap:1px;margin-left:auto;">
@@ -568,11 +568,11 @@
         <table class="details-table">
           <thead>
             <tr>
-              <th data-sort="date">Date</th>
-              <th data-sort="projectName">Project</th>
-              <th data-sort="taskTitle">Task</th>
-              <th data-sort="timeSpent">Time Spent</th>
-              <th data-sort="status">Status</th>
+              <th data-sort="date" data-i18n="table.date">Date</th>
+              <th data-sort="projectName" data-i18n="table.project">Project</th>
+              <th data-sort="taskTitle" data-i18n="table.task">Task</th>
+              <th data-sort="timeSpent" data-i18n="table.timeSpent">Time Spent</th>
+              <th data-sort="status" data-i18n="table.status">Status</th>
             </tr>
           </thead>
           <tbody id="details-table-body">
@@ -588,12 +588,26 @@
         <div style="max-width: 560px;">
 
           <div class="settings-section">
-            <h3 class="settings-section-title">Trend Chart</h3>
+            <h3 class="settings-section-title" data-i18n="settings.languageSection">Language</h3>
+            <div class="setting-row">
+              <div>
+                <div class="setting-label" data-i18n="settings.language">Language</div>
+                <div class="setting-desc" data-i18n="settings.languageDesc">Interface language</div>
+              </div>
+              <select id="setting-language" class="chart-select" style="width:auto;flex-shrink:0">
+                <option value="en">English</option>
+                <option value="fr">Français</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="settings-section">
+            <h3 class="settings-section-title" data-i18n="settings.trendChart">Trend Chart</h3>
 
             <div class="setting-row">
               <div>
-                <div class="setting-label">Grouping</div>
-                <div class="setting-desc">Time grain used on the x-axis</div>
+                <div class="setting-label" data-i18n="settings.grouping">Grouping</div>
+                <div class="setting-desc" data-i18n="settings.groupingDesc">Time grain used on the x-axis</div>
               </div>
               <select id="setting-bar-grouping" class="chart-select" style="width:auto;flex-shrink:0">
                 <option value="daily">Daily</option>
@@ -604,8 +618,8 @@
 
             <div class="setting-row" id="setting-bar-agg-row">
               <div>
-                <div class="setting-label">Measure</div>
-                <div class="setting-desc">How values are computed per period</div>
+                <div class="setting-label" data-i18n="settings.measure">Measure</div>
+                <div class="setting-desc" data-i18n="settings.measureDesc">How values are computed per period</div>
               </div>
               <select id="setting-bar-aggregation" class="chart-select" style="width:auto;flex-shrink:0;max-width:160px">
                 <option value="total">Total</option>
@@ -616,8 +630,8 @@
 
             <div class="setting-row">
               <div>
-                <div class="setting-label">Date axis format</div>
-                <div class="setting-desc">Format shown below each bar (applies to daily and weekly groupings)</div>
+                <div class="setting-label" data-i18n="settings.dateAxisFmt">Date axis format</div>
+                <div class="setting-desc" data-i18n="settings.dateAxisFmtDesc">Format shown below each bar (applies to daily and weekly groupings)</div>
               </div>
               <select id="setting-bar-date-fmt" class="chart-select" style="width:auto;flex-shrink:0">
                 <option value="MM-DD">MM-DD (02-22)</option>
@@ -628,12 +642,12 @@
           </div>
 
           <div class="settings-section">
-            <h3 class="settings-section-title">Date Formats</h3>
+            <h3 class="settings-section-title" data-i18n="settings.dateFormats">Date Formats</h3>
 
             <div class="setting-row">
               <div>
-                <div class="setting-label">Detailed List - date column</div>
-                <div class="setting-desc">Format of the date column in the detailed list</div>
+                <div class="setting-label" data-i18n="settings.tableDate">Detailed List - date column</div>
+                <div class="setting-desc" data-i18n="settings.tableDateDesc">Format of the date column in the detailed list</div>
               </div>
               <select id="setting-table-date-fmt" class="chart-select" style="width:auto;flex-shrink:0">
                 <option value="en-US">Feb 22, 2026</option>
@@ -644,12 +658,12 @@
           </div>
 
           <div class="settings-section">
-            <h3 class="settings-section-title">Project Breakdown</h3>
+            <h3 class="settings-section-title" data-i18n="settings.projectBreakdown">Project Breakdown</h3>
 
             <div class="setting-row">
               <div>
-                <div class="setting-label">Show percentages alongside values</div>
-                <div class="setting-desc">Shows each project's share alongside its value</div>
+                <div class="setting-label" data-i18n="settings.showPct">Show percentages alongside values</div>
+                <div class="setting-desc" data-i18n="settings.showPctDesc">Shows each project's share alongside its value</div>
               </div>
               <label class="s-toggle">
                 <input type="checkbox" id="setting-show-pct">
@@ -659,8 +673,8 @@
 
             <div class="setting-row">
               <div>
-                <div class="setting-label">Show total row</div>
-                <div class="setting-desc">Displays the sum at the bottom of the legend</div>
+                <div class="setting-label" data-i18n="settings.showTotal">Show total row</div>
+                <div class="setting-desc" data-i18n="settings.showTotalDesc">Displays the sum at the bottom of the legend</div>
               </div>
               <label class="s-toggle">
                 <input type="checkbox" id="setting-show-total" checked>
@@ -670,21 +684,21 @@
 
             <div class="setting-row" style="flex-direction: column; align-items: flex-start; gap: 0.25rem;">
               <div>
-                <div class="setting-label">Visible categories</div>
-                <div class="setting-desc">Choose which breakdown types appear in the selector</div>
+                <div class="setting-label" data-i18n="settings.visibleCats">Visible categories</div>
+                <div class="setting-desc" data-i18n="settings.visibleCatsDesc">Choose which breakdown types appear in the selector</div>
               </div>
               <div class="setting-cats">
-                <label class="s-toggle"><input type="checkbox" id="cat-time" checked><span class="s-track"></span><span>Time Tracked</span></label>
-                <label class="s-toggle"><input type="checkbox" id="cat-completed" checked><span class="s-track"></span><span>Tasks Completed</span></label>
-                <label class="s-toggle"><input type="checkbox" id="cat-overdue" checked><span class="s-track"></span><span>Tasks Overdue</span></label>
-                <label class="s-toggle"><input type="checkbox" id="cat-late" checked><span class="s-track"></span><span>Completed Late</span></label>
-                <label class="s-toggle"><input type="checkbox" id="cat-billable" checked><span class="s-track"></span><span>Billable Days</span></label>
+                <label class="s-toggle"><input type="checkbox" id="cat-time" checked><span class="s-track"></span><span data-i18n="settings.catTime">Time Tracked</span></label>
+                <label class="s-toggle"><input type="checkbox" id="cat-completed" checked><span class="s-track"></span><span data-i18n="settings.catCompleted">Tasks Completed</span></label>
+                <label class="s-toggle"><input type="checkbox" id="cat-overdue" checked><span class="s-track"></span><span data-i18n="settings.catOverdue">Tasks Overdue</span></label>
+                <label class="s-toggle"><input type="checkbox" id="cat-late" checked><span class="s-track"></span><span data-i18n="settings.catLate">Completed Late</span></label>
+                <label class="s-toggle"><input type="checkbox" id="cat-billable" checked><span class="s-track"></span><span data-i18n="settings.catBillable">Billable Days</span></label>
               </div>
             </div>
           </div>
 
           <div style="padding-top: 1.5rem; border-top: 1px solid var(--divider-color, #333); margin-top: 0.5rem;">
-            <button type="button" onclick="resetAll()" style="background: rgba(248,113,113,0.08); color: #f87171; border: 1px solid rgba(248,113,113,0.25); border-radius: 6px; padding: 0.45rem 1.1rem; cursor: pointer; font-size: 0.875rem;">
+            <button type="button" onclick="resetAll()" data-i18n="settings.reset" style="background: rgba(248,113,113,0.08); color: #f87171; border: 1px solid rgba(248,113,113,0.25); border-radius: 6px; padding: 0.45rem 1.1rem; cursor: pointer; font-size: 0.875rem;">
               Reset all settings &amp; filters to defaults
             </button>
           </div>
@@ -700,6 +714,205 @@
 
   <script>
     console.log("[sp-dashboard] Dashboard script initialized");
+
+    // --- INTERNATIONALIZATION ---
+    let currentLang = 'en';
+    const TRANSLATIONS = {
+      en: {
+        'header.title': 'Dashboard',
+        'header.subtitle': 'Select a time period to view metrics',
+        'header.from': 'From',
+        'header.to': 'To',
+        'header.period': 'Period',
+        'header.project': 'Project',
+        'header.allProjects': 'All Projects',
+        'preset.today': 'Today',
+        'preset.week': 'Past Week',
+        'preset.month': 'Past Month',
+        'preset.year': 'Past Year',
+        'preset.custom': 'Custom range [From-To]',
+        'tab.dashboard': 'Dashboard',
+        'tab.details': 'Detailed List',
+        'tab.settings': 'Settings',
+        'stat.totalTime': 'Total Time Tracked',
+        'stat.completed': 'Tasks Completed',
+        'stat.overdue': 'Overdue Tasks',
+        'stat.late': 'Completed Late',
+        'stat.tasks': 'tasks',
+        'stat.needsAttention': 'Needs Attention',
+        'bar.daily': 'Daily Trend',
+        'bar.weekly': 'Weekly Trend',
+        'bar.monthly': 'Monthly Trend',
+        'bar.time': 'Time tracked',
+        'bar.completed': 'Completed',
+        'bar.overdue': 'Overdue',
+        'bar.late': 'Late',
+        'pie.title': 'Project Breakdown',
+        'pie.time': 'Time tracked',
+        'pie.completed': 'Completed',
+        'pie.overdue': 'Overdue',
+        'pie.late': 'Late',
+        'pie.billable': 'Billable',
+        'pie.noData': 'No data for selected period',
+        'pie.total': 'Total',
+        'billable.days': 'Billable days',
+        'billable.hpd': 'Hours / day',
+        'billable.sep': '= total ÷',
+        'billable.dayUnit': 'd',
+        'billable.dayAvg': '/ day avg',
+        'billable.total': 'total',
+        'table.date': 'Date',
+        'table.project': 'Project',
+        'table.task': 'Task',
+        'table.timeSpent': 'Time Spent',
+        'table.status': 'Status',
+        'table.noData': 'No tracked time found for this date range.',
+        'badge.late': 'Late',
+        'badge.overdue': 'Overdue',
+        'badge.done': 'Done',
+        'badge.inProgress': 'In Progress',
+        'settings.languageSection': 'Language',
+        'settings.language': 'Language',
+        'settings.languageDesc': 'Interface language',
+        'settings.trendChart': 'Trend Chart',
+        'settings.grouping': 'Grouping',
+        'settings.groupingDesc': 'Time grain used on the x-axis',
+        'settings.daily': 'Daily',
+        'settings.weekly': 'Weekly',
+        'settings.monthly': 'Monthly',
+        'settings.measure': 'Measure',
+        'settings.measureDesc': 'How values are computed per period',
+        'settings.total': 'Total',
+        'settings.avgCalDay': 'Avg / Calendar Day',
+        'settings.avgWorkday': 'Avg / Workday (M–F)',
+        'settings.dateAxisFmt': 'Date axis format',
+        'settings.dateAxisFmtDesc': 'Format shown below each bar (applies to daily and weekly groupings)',
+        'settings.dateFormats': 'Date Formats',
+        'settings.tableDate': 'Detailed List - date column',
+        'settings.tableDateDesc': 'Format of the date column in the detailed list',
+        'settings.projectBreakdown': 'Project Breakdown',
+        'settings.showPct': 'Show percentages alongside values',
+        'settings.showPctDesc': "Shows each project's share alongside its value",
+        'settings.showTotal': 'Show total row',
+        'settings.showTotalDesc': 'Displays the sum at the bottom of the legend',
+        'settings.visibleCats': 'Visible categories',
+        'settings.visibleCatsDesc': 'Choose which breakdown types appear in the selector',
+        'settings.catTime': 'Time Tracked',
+        'settings.catCompleted': 'Tasks Completed',
+        'settings.catOverdue': 'Tasks Overdue',
+        'settings.catLate': 'Completed Late',
+        'settings.catBillable': 'Billable Days',
+        'settings.reset': 'Reset all settings & filters to defaults',
+        'dynamic.total': (n) => `/ ${n} total`,
+        'dynamic.projects': (n) => `${n} projects`,
+        'dynamic.unplanned': (n) => `${n} task(s) have no due date so overdue is unavailable`,
+        'dynamic.uncategorized': 'Uncategorized',
+        'dynamic.untitledTask': 'Untitled Task',
+        'dynamic.weekOf': (d) => `w/c ${d}`,
+        'dynamic.tasks': (n) => `${Math.round(n)} tasks`,
+        'months': ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'],
+      },
+      fr: {
+        'header.title': 'Tableau de bord',
+        'header.subtitle': 'Sélectionnez une période pour analyser vos métriques',
+        'header.from': 'Du',
+        'header.to': 'Au',
+        'header.period': 'Période',
+        'header.project': 'Projet',
+        'header.allProjects': 'Tous les projets',
+        'preset.today': "Aujourd'hui",
+        'preset.week': '7 derniers jours',
+        'preset.month': '31 derniers jours',
+        'preset.year': 'Année écoulée',
+        'preset.custom': 'Période personnalisée [Du - Au]',
+        'tab.dashboard': 'Vue d’ensemble',
+        'tab.details': 'Liste détaillée',
+        'tab.settings': 'Paramètres',
+        'stat.totalTime': 'Temps total enregistré',
+        'stat.completed': 'Tâches terminées',
+        'stat.overdue': 'Tâches en retard',
+        'stat.late': 'Terminées hors délai',
+        'stat.tasks': 'tâches',
+        'stat.needsAttention': 'À traiter en priorité',
+        'bar.daily': 'Tendance journalière',
+        'bar.weekly': 'Tendance hebdomadaire',
+        'bar.monthly': 'Tendance mensuelle',
+        'bar.time': 'Temps enregistré',
+        'bar.completed': 'Terminées',
+        'bar.overdue': 'En retard',
+        'bar.late': 'Hors délai',
+        'pie.title': 'Répartition par projet',
+        'pie.time': 'Temps enregistré',
+        'pie.completed': 'Terminées',
+        'pie.overdue': 'En retard',
+        'pie.late': 'Hors délai',
+        'pie.billable': 'Facturable',
+        'pie.noData': 'Aucune donnée sur cette période',
+        'pie.total': 'Total',
+        'billable.days': 'Jours facturables',
+        'billable.hpd': 'Heures / jour',
+        'billable.sep': '= total ÷',
+        'billable.dayUnit': 'j',
+        'billable.dayAvg': '/ j moy.',
+        'billable.total': 'total',
+        'table.date': 'Date',
+        'table.project': 'Projet',
+        'table.task': 'Tâche',
+        'table.timeSpent': 'Temps passé',
+        'table.status': 'Statut',
+        'table.noData': 'Aucun temps enregistré trouvé pour cette période.',
+        'badge.late': 'Hors délai',
+        'badge.overdue': 'En retard',
+        'badge.done': 'Terminé',
+        'badge.inProgress': 'En cours',
+        'settings.languageSection': 'Langue',
+        'settings.language': 'Langue',
+        'settings.languageDesc': "Langue de l'interface",
+        'settings.trendChart': 'Graphique de tendance',
+        'settings.grouping': 'Périodicité',
+        'settings.groupingDesc': "Axe de temps utilisé (abscisse)",
+        'settings.daily': 'Par jour',
+        'settings.weekly': 'Par semaine',
+        'settings.monthly': 'Par mois',
+        'settings.measure': 'Calcul des moyennes',
+        'settings.measureDesc': 'Méthode de calcul des valeurs par période',
+        'settings.total': 'Cumul total',
+        'settings.avgCalDay': 'Moy. / jour civil',
+        'settings.avgWorkday': 'Moy. / jour ouvré (Lun–Ven)',
+        'settings.dateAxisFmt': "Format des dates sur l'axe",
+        'settings.dateAxisFmtDesc': 'Format sous chaque barre (groupements par jour et par semaine)',
+        'settings.dateFormats': 'Formats de date',
+        'settings.tableDate': 'Liste détaillée - Colonne Date',
+        'settings.tableDateDesc': 'Format de la date dans le tableau de la liste détaillée',
+        'settings.projectBreakdown': 'Répartition par projet',
+        'settings.showPct': 'Afficher les pourcentages',
+        'settings.showPctDesc': 'Affiche la part relative de chaque projet à côté de sa valeur',
+        'settings.showTotal': 'Afficher la ligne Total',
+        'settings.showTotalDesc': 'Affiche la somme globale au bas de la légende',
+        'settings.visibleCats': 'Catégories visibles',
+        'settings.visibleCatsDesc': 'Choisir les métriques à afficher dans le sélecteur',
+        'settings.catTime': 'Temps enregistré',
+        'settings.catCompleted': 'Tâches terminées',
+        'settings.catOverdue': 'Tâches en retard',
+        'settings.catLate': 'Terminées hors délai',
+        'settings.catBillable': 'Jours facturables',
+        'settings.reset': 'Réinitialiser tous les filtres et paramètres par défaut',
+        'dynamic.total': (n) => `/ ${n} au total`,
+        'dynamic.projects': (n) => `${n} projets`,
+        'dynamic.unplanned': (n) => `${n} tâche(s) sans date d'échéance (calcul du retard impossible)`,
+        'dynamic.uncategorized': 'Sans projet',
+        'dynamic.untitledTask': 'Tâche sans titre',
+        'dynamic.weekOf': (d) => `Sem. du ${d}`,
+        'dynamic.tasks': (n) => `${Math.round(n)} tâches`,
+        'months': ['Jan','Fév','Mar','Avr','Mai','Juin','Juil','Aoû','Sep','Oct','Nov','Déc'],
+      },
+    };
+    const t = (key, ...args) => {
+      const dict = TRANSLATIONS[currentLang] || TRANSLATIONS.en;
+      const val = key in dict ? dict[key] : (TRANSLATIONS.en[key] ?? key);
+      return typeof val === 'function' ? val(...args) : val;
+    };
+
     // --- UTILITIES ---
     const formatTime = (milliseconds) => {
       if (!milliseconds) return '0h 0m';
@@ -711,7 +924,8 @@
 
     const formatDateShort = (dateStr) => {
       const d = new Date(`${dateStr}T00:00:00`);
-      return d.toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' });
+      const locale = currentLang === 'fr' ? 'fr-FR' : 'en-US';
+      return d.toLocaleDateString(locale, { month: 'short', day: 'numeric', year: 'numeric' });
     };
 
     const formatBarLabel = (dateStr) => {
@@ -721,7 +935,7 @@
     };
 
     const formatMonthLabel = (ym) => {
-      const months = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+      const months = t('months');
       const [y, m] = ym.split('-');
       return `${months[parseInt(m, 10) - 1]} '${y.slice(2)}`;
     };
@@ -734,11 +948,12 @@
       if (row) row.style.display = getBarGrouping() === 'daily' ? 'none' : '';
     };
 
-    const BAR_CHART_TITLES = { daily: 'Daily Trend', weekly: 'Weekly Trend', monthly: 'Monthly Trend' };
+    const getBarChartTitle = () =>
+      ({ daily: t('bar.daily'), weekly: t('bar.weekly'), monthly: t('bar.monthly') })[getBarGrouping()] ?? t('bar.daily');
 
     const updateBarChartTitle = () => {
       const el = document.getElementById('bar-chart-title');
-      if (el) el.textContent = BAR_CHART_TITLES[getBarGrouping()] ?? 'Trend';
+      if (el) el.textContent = getBarChartTitle();
     };
 
     const formatTableDate = (dateStr) => {
@@ -805,6 +1020,7 @@
           catBillable:       document.getElementById('cat-billable').checked,
           billableHpd:       document.getElementById('billable-hpd').value,
           lastEditedBillable,
+          lang:              currentLang,
         }));
       } catch (e) { /* localStorage unavailable in some iframe contexts */ }
     };
@@ -826,6 +1042,7 @@
         if (s.catBillable  !== undefined) document.getElementById('cat-billable').checked         = s.catBillable;
         if (s.billableHpd)                document.getElementById('billable-hpd').value           = s.billableHpd;
         if (s.lastEditedBillable)         lastEditedBillable = s.lastEditedBillable;
+        if (s.lang) { currentLang = s.lang; document.getElementById('setting-language').value = s.lang; }
       } catch (e) { /* ignore parse errors */ }
     };
 
@@ -892,6 +1109,9 @@
       document.getElementById('billable-hpd').value = '8';
       document.getElementById('billable-days').value = '';
       lastEditedBillable = 'hpd';
+      currentLang = 'en';
+      document.getElementById('setting-language').value = 'en';
+      applyTranslations();
       // Session defaults
       document.getElementById('date-preset').value = 'today';
       document.getElementById('custom-date-container').classList.add('hidden');
@@ -965,6 +1185,28 @@
     // Base colors matching the UI kit logic (fallback hexes just in case)
     const PIE_COLORS = ['#03a9f4', '#b388ff', '#4ade80', '#f472b6', '#fbbf24', '#f87171', '#34d399', '#818cf8', '#a78bfa'];
 
+    const applyTranslations = () => {
+      document.documentElement.lang = currentLang;
+      document.querySelectorAll('[data-i18n]').forEach(el => {
+        el.textContent = t(el.getAttribute('data-i18n'));
+      });
+      const setOpts = (id, keys) => {
+        const sel = document.getElementById(id);
+        if (!sel) return;
+        const val = sel.value;
+        [...sel.options].forEach((opt, i) => { if (keys[i]) opt.textContent = t(keys[i]); });
+        sel.value = val;
+      };
+      setOpts('date-preset', ['preset.today','preset.week','preset.month','preset.year','preset.custom']);
+      setOpts('bar-chart-select', ['bar.time','bar.completed','bar.overdue','bar.late']);
+      setOpts('setting-bar-grouping', ['settings.daily','settings.weekly','settings.monthly']);
+      setOpts('setting-bar-aggregation', ['settings.total','settings.avgCalDay','settings.avgWorkday']);
+      syncPieCategories();
+      updateBarChartTitle();
+      updateProjectFilterBtn();
+      if (latestMetrics) updateDashboardUI(latestMetrics);
+    };
+
     // --- INITIALIZE UI ---
     const todayObjInit = new Date();
     const lastWeekObjInit = new Date();
@@ -1016,11 +1258,11 @@
     document.getElementById('bar-chart-select').addEventListener('change', () => { updateBarChart(); saveSession(); });
     document.getElementById('pie-chart-select').addEventListener('change', () => { updatePieChart(); saveSession(); });
     const PIE_CATEGORIES = [
-      { id: 'cat-time',      value: 'time',      label: 'Time tracked' },
-      { id: 'cat-completed', value: 'completed',  label: 'Completed'    },
-      { id: 'cat-overdue',   value: 'overdue',    label: 'Overdue'      },
-      { id: 'cat-late',      value: 'late',       label: 'Late'         },
-      { id: 'cat-billable',  value: 'billable',   label: 'Billable'     },
+      { id: 'cat-time',      value: 'time',      labelKey: 'pie.time'     },
+      { id: 'cat-completed', value: 'completed',  labelKey: 'pie.completed' },
+      { id: 'cat-overdue',   value: 'overdue',    labelKey: 'pie.overdue'  },
+      { id: 'cat-late',      value: 'late',       labelKey: 'pie.late'     },
+      { id: 'cat-billable',  value: 'billable',   labelKey: 'pie.billable' },
     ];
     const syncPieCategories = () => {
       const select = document.getElementById('pie-chart-select');
@@ -1030,7 +1272,7 @@
         if (document.getElementById(cat.id).checked) {
           const opt = document.createElement('option');
           opt.value = cat.value;
-          opt.textContent = cat.label;
+          opt.textContent = t(cat.labelKey);
           if (cat.value === current) opt.selected = true;
           select.appendChild(opt);
         }
@@ -1051,6 +1293,11 @@
     document.getElementById('setting-show-total').addEventListener('change', () => { updatePieChart(); saveSettings(); });
     PIE_CATEGORIES.forEach(cat => {
       document.getElementById(cat.id).addEventListener('change', () => { syncPieCategories(); saveSettings(); });
+    });
+    document.getElementById('setting-language').addEventListener('change', (e) => {
+      currentLang = e.target.value;
+      applyTranslations();
+      saveSettings();
     });
     document.getElementById('billable-days').addEventListener('input', () => {
       lastEditedBillable = 'days';
@@ -1082,7 +1329,7 @@
 
       document.getElementById('stat-time').innerText = formatTime(metrics.totalTimeSpent);
       document.getElementById('stat-tasks').innerText = String(metrics.totalCompleted);
-      document.getElementById('stat-tasks-total').innerText = `/ ${metrics.totalTasks} total`;
+      document.getElementById('stat-tasks-total').innerText = t('dynamic.total', metrics.totalTasks);
       
       // Progress: completion rate of active tasks in the date range
       // totalCompleted = unique tasks completed
@@ -1106,7 +1353,7 @@
         overdueEl.classList.remove('text-red');
         if (metrics.unplannedCount > 0) {
           overdueNote.classList.remove('hidden');
-          overdueNote.innerText = `${metrics.unplannedCount} task(s) have no due date so overdue is unavailable`;
+          overdueNote.innerText = t('dynamic.unplanned', metrics.unplannedCount);
         } else {
           overdueNote.classList.add('hidden');
         }
@@ -1126,11 +1373,11 @@
       if (type === 'time') {
         renderGenericBarChart(latestMetrics.weeklyData, 'bar-chart-container', 'var(--c-primary, #03a9f4)', formatTime);
       } else if (type === 'completed') {
-        renderGenericBarChart(latestMetrics.completedPerDay, 'bar-chart-container', '#4ade80', (v) => `${Math.round(v)} tasks`);
+        renderGenericBarChart(latestMetrics.completedPerDay, 'bar-chart-container', '#4ade80', (v) => t('dynamic.tasks', v));
       } else if (type === 'overdue') {
-        renderGenericBarChart(latestMetrics.overduePerDay, 'bar-chart-container', '#f87171', (v) => `${Math.round(v)} tasks`);
+        renderGenericBarChart(latestMetrics.overduePerDay, 'bar-chart-container', '#f87171', (v) => t('dynamic.tasks', v));
       } else if (type === 'late') {
-        renderGenericBarChart(latestMetrics.latePerDay, 'bar-chart-container', '#fbbf24', (v) => `${Math.round(v)} tasks`);
+        renderGenericBarChart(latestMetrics.latePerDay, 'bar-chart-container', '#fbbf24', (v) => t('dynamic.tasks', v));
       }
     };
 
@@ -1155,21 +1402,21 @@
         }
         const currentHpd = parseFloat(hpdInput.value) || 8;
         document.getElementById('billable-total-display').textContent =
-          `${formatTime(latestMetrics.totalTimeSpent)} total`;
+          `${formatTime(latestMetrics.totalTimeSpent)} ${t('billable.total')}`;
         document.getElementById('billable-avg-display').textContent =
-          `${formatTime(Math.round(currentHpd * 3600000))} / day avg`;
+          `${formatTime(Math.round(currentHpd * 3600000))} ${t('billable.dayAvg')}`;
         renderNativePieChart(latestMetrics.projectData,
-          (v) => { const d = (v / 3600000 / currentHpd).toFixed(1); return `${d.endsWith('.0') ? Math.round(v / 3600000 / currentHpd) : d}d`; });
+          (v) => { const d = (v / 3600000 / currentHpd).toFixed(1); return `${d.endsWith('.0') ? Math.round(v / 3600000 / currentHpd) : d}${t('billable.dayUnit')}`; });
       } else {
         billablePanel.classList.add('hidden');
         if (type === 'time') {
           renderNativePieChart(latestMetrics.projectData, formatTime);
         } else if (type === 'completed') {
-          renderNativePieChart(latestMetrics.projectCompletedData, (v) => `${Math.round(v)} tasks`);
+          renderNativePieChart(latestMetrics.projectCompletedData, (v) => t('dynamic.tasks', v));
         } else if (type === 'overdue') {
-          renderNativePieChart(latestMetrics.projectOverdueData, (v) => `${Math.round(v)} tasks`);
+          renderNativePieChart(latestMetrics.projectOverdueData, (v) => t('dynamic.tasks', v));
         } else if (type === 'late') {
-          renderNativePieChart(latestMetrics.projectLateData, (v) => `${Math.round(v)} tasks`);
+          renderNativePieChart(latestMetrics.projectLateData, (v) => t('dynamic.tasks', v));
         }
       }
     };
@@ -1205,7 +1452,7 @@
         });
         bars = [...weekMap.entries()].map(([mondayStr, acc]) => ({
           label: formatBarLabel(mondayStr),
-          title: `w/c ${mondayStr}`,
+          title: t('dynamic.weekOf', mondayStr),
           val: applyAgg(acc),
         }));
       } else if (grouping === 'monthly') {
@@ -1308,50 +1555,86 @@
       const showTotal = document.getElementById('setting-show-total').checked;
       legendEl.innerHTML = '';
 
+      // Grid layout when % are shown: columns auto-size so dashes align perfectly
+      if (showPct) {
+        legendEl.style.display = 'grid';
+        legendEl.style.gridTemplateColumns = '1fr auto auto';
+        legendEl.style.columnGap = '0.4rem';
+        legendEl.style.rowGap = '0.5rem';
+        legendEl.style.alignItems = 'center';
+      } else {
+        legendEl.style.display = '';
+        legendEl.style.gridTemplateColumns = '';
+        legendEl.style.columnGap = '';
+        legendEl.style.rowGap = '';
+        legendEl.style.alignItems = '';
+      }
+
       const entries = Object.entries(projectData).sort((a,b) => b[1] - a[1]);
       const totalVal = entries.reduce((acc, curr) => acc + curr[1], 0);
 
       if (totalVal === 0 || entries.length === 0) {
         pieEl.style.background = 'var(--divider-color, #333)';
-        legendEl.innerHTML = '<div class="text-muted text-sm">No data for selected period</div>';
+        legendEl.innerHTML = `<div class="text-muted text-sm">${t('pie.noData')}</div>`;
         return;
       }
 
       const gradientStops = [];
       let currentPercent = 0;
+      const fmtPct = (p) => p.toFixed(1).endsWith('.0') ? `${Math.round(p)}%` : `${p.toFixed(1)}%`;
 
       entries.forEach(([name, val], index) => {
         const color = PIE_COLORS[index % PIE_COLORS.length];
         const percent = (val / totalVal) * 100;
-
         gradientStops.push(`${color} ${currentPercent}% ${currentPercent + percent}%`);
         currentPercent += percent;
 
-        const fmtPct = (p) => p.toFixed(1).endsWith('.0') ? `${Math.round(p)}%` : `${p.toFixed(1)}%`;
         const baseVal = formatFn(val);
-        const displayVal = showPct ? `${baseVal} <span style="color:var(--text-color-muted,#9e9e9e);font-weight:400">- ${fmtPct(percent)}</span>` : baseVal;
-        legendEl.innerHTML += `
-          <div class="legend-item">
+        const displayName = name === 'Uncategorized' ? t('dynamic.uncategorized') : name;
+        const truncName = displayName.length > 20 ? `${displayName.substring(0, 20)}...` : displayName;
+
+        if (showPct) {
+          legendEl.innerHTML += `
             <div class="legend-label">
-              <span class="legend-dot" style="background: ${color}"></span>
-              <span title="${name}">${name.length > 20 ? `${name.substring(0, 20)}...` : name}</span>
+              <span class="legend-dot" style="background:${color}"></span>
+              <span title="${displayName}">${truncName}</span>
             </div>
-            <div class="legend-val">${displayVal}</div>
-          </div>
-        `;
+            <div class="legend-val" style="text-align:right">${baseVal}</div>
+            <div style="color:var(--text-color-muted,#9e9e9e);font-weight:400;white-space:nowrap">- ${fmtPct(percent)}</div>
+          `;
+        } else {
+          legendEl.innerHTML += `
+            <div class="legend-item">
+              <div class="legend-label">
+                <span class="legend-dot" style="background:${color}"></span>
+                <span title="${displayName}">${truncName}</span>
+              </div>
+              <div class="legend-val">${baseVal}</div>
+            </div>
+          `;
+        }
       });
       pieEl.style.background = `conic-gradient(${gradientStops.join(', ')})`;
 
       if (showTotal) {
         const totalDisplay = formatFn(totalVal);
-        legendEl.innerHTML += `
-          <div style="border-top: 1px solid var(--divider-color, #333); margin-top: 0.35rem; padding-top: 0.35rem;">
-            <div class="legend-item">
-              <div class="legend-label" style="color: var(--text-color, #fff); font-weight: 600;">Total</div>
-              <div class="legend-val">${showPct ? `${totalDisplay} <span style="color:var(--text-color-muted,#9e9e9e);font-weight:400">- 100%</span>` : totalDisplay}</div>
+        if (showPct) {
+          legendEl.innerHTML += `
+            <div style="grid-column:1/-1;border-top:1px solid var(--divider-color,#333);margin:0.1rem 0"></div>
+            <div class="legend-label" style="color:var(--text-color,#fff);font-weight:600">${t('pie.total')}</div>
+            <div class="legend-val" style="text-align:right">${totalDisplay}</div>
+            <div style="color:var(--text-color-muted,#9e9e9e);font-weight:400;white-space:nowrap">- 100%</div>
+          `;
+        } else {
+          legendEl.innerHTML += `
+            <div style="border-top:1px solid var(--divider-color,#333);margin-top:0.35rem;padding-top:0.35rem;">
+              <div class="legend-item">
+                <div class="legend-label" style="color:var(--text-color,#fff);font-weight:600">${t('pie.total')}</div>
+                <div class="legend-val">${totalDisplay}</div>
+              </div>
             </div>
-          </div>
-        `;
+          `;
+        }
       }
     };
 
@@ -1359,7 +1642,7 @@
       const tbody = document.getElementById('details-table-body');
       
       if (entries.length === 0) {
-        tbody.innerHTML = `<tr><td colspan="5" style="text-align: center; color: var(--text-color-muted, #9e9e9e); padding: 3rem;">No tracked time found for this date range.</td></tr>`;
+        tbody.innerHTML = `<tr><td colspan="5" style="text-align: center; color: var(--text-color-muted, #9e9e9e); padding: 3rem;">${t('table.noData')}</td></tr>`;
         return;
       }
 
@@ -1376,13 +1659,13 @@
           <td class="time-cell">${formatTime(entry.timeSpent)}</td>
           <td>
             ${
-              entry.late 
-                ? `<span class="badge badge-yellow">Late</span>`
+              entry.late
+                ? `<span class="badge badge-yellow">${t('badge.late')}</span>`
                 : entry.overdue
-                ? `<span class="badge badge-red">Overdue</span>`
-                : entry.isDone 
-                ? `<span class="badge badge-done">Done</span>`
-                : `<span class="badge badge-progress">In Progress</span>`
+                ? `<span class="badge badge-red">${t('badge.overdue')}</span>`
+                : entry.isDone
+                ? `<span class="badge badge-done">${t('badge.done')}</span>`
+                : `<span class="badge badge-progress">${t('badge.inProgress')}</span>`
             }
           </td>
         </tr>
@@ -1411,11 +1694,11 @@
       const others = [...dropdown.querySelectorAll('input[type=checkbox]:not([value="all"])')];
       const checked = others.filter(cb => cb.checked);
       if (!allCb || allCb.checked || checked.length === 0) {
-        btn.textContent = 'All Projects';
+        btn.textContent = t('header.allProjects');
       } else if (checked.length === 1) {
         btn.textContent = checked[0].closest('label').textContent.trim();
       } else {
-        btn.textContent = `${checked.length} projects`;
+        btn.textContent = t('dynamic.projects', checked.length);
       }
     };
 
@@ -1442,10 +1725,10 @@
       const restoreAll = pendingProjectRestore ? pendingProjectRestore.all : (currentAll && currentChecked.size === 0);
       const restoreIds = pendingProjectRestore ? pendingProjectRestore.ids : currentChecked;
       pendingProjectRestore = null;
-      makeOption('all', 'All Projects', restoreAll && restoreIds.size === 0);
+      makeOption('all', t('header.allProjects'), restoreAll && restoreIds.size === 0);
       projectsArr.forEach(p => { makeOption(p.id, p.title, !restoreAll && restoreIds.has(p.id)); });
-      const hasUncategorized = tasksArr.some(t => !t.projectId || !projectsArr.find(p => p.id === t.projectId));
-      if (hasUncategorized) makeOption('uncategorized', 'Uncategorized', !restoreAll && restoreIds.has('uncategorized'));
+      const hasUncategorized = tasksArr.some(task => !task.projectId || !projectsArr.find(p => p.id === task.projectId));
+      if (hasUncategorized) makeOption('uncategorized', t('dynamic.uncategorized'), !restoreAll && restoreIds.has('uncategorized'));
       updateProjectFilterBtn();
     };
 
@@ -1578,7 +1861,7 @@
               date: dateStr,
               projectName: pName,
               projectColor: pColor,
-              taskTitle: task.title || 'Untitled Task',
+              taskTitle: task.title || t('dynamic.untitledTask'),
               timeSpent: spentOnDate,
               isDone: task.isDone,
               overdue: isOverdue,
@@ -1612,7 +1895,7 @@
               date: doneDate,
               projectName: pName,
               projectColor: pColor,
-              taskTitle: task.title || 'Untitled Task',
+              taskTitle: task.title || t('dynamic.untitledTask'),
               timeSpent: 0,
               isDone: task.isDone,
               overdue: isOverdue,
@@ -1620,16 +1903,16 @@
             });
           }
         }
-        
+
         // add a row for overdue or late tasks that had no time entries
         if (taskTimeInRange === 0 && (isOverdue || isLate)) {
-          const badge = isLate ? 'Late' : 'Overdue';
+          const badge = isLate ? t('badge.late') : t('badge.overdue');
           const dateStr = dueStart ? new Date(dueStart).toISOString().split('T')[0] : '';
           metrics.tableEntries.push({
             date: dateStr,
             projectName: pName,
             projectColor: pColor,
-            taskTitle: `${task.title || 'Untitled Task'} (${badge})`,
+            taskTitle: `${task.title || t('dynamic.untitledTask')} (${badge})`,
             timeSpent: 0,
             isDone: task.isDone,
             overdue: isOverdue,
@@ -1677,22 +1960,22 @@
       }, 0);
       
       // Diagnostic: log all done tasks and final tally
-      const doneTasks = filteredTasks.filter(t => t.isDone);
-      const doneWithoutTimestamp = doneTasks.filter(t => !t.doneOn);
+      const doneTasks = filteredTasks.filter(tk => tk.isDone);
+      const doneWithoutTimestamp = doneTasks.filter(tk => !tk.doneOn);
       console.log("[sp-dashboard] FINAL METRICS: totalCompleted=", metrics.totalCompleted, "totalTasks=", metrics.totalTasks);
-      console.log(`[sp-dashboard] Done tasks in array (count=${doneTasks.length}):`, doneTasks.map(t => ({ id: t.id, title: t.title, doneOn: t.doneOn })));
+      console.log(`[sp-dashboard] Done tasks in array (count=${doneTasks.length}):`, doneTasks.map(tk => ({ id: tk.id, title: tk.title, doneOn: tk.doneOn })));
       if (doneWithoutTimestamp.length > 0) {
-        console.warn("[sp-dashboard] WARNING: done tasks missing doneOn timestamp:", doneWithoutTimestamp.map(t => ({ id: t.id, title: t.title })));
+        console.warn("[sp-dashboard] WARNING: done tasks missing doneOn timestamp:", doneWithoutTimestamp.map(tk => ({ id: tk.id, title: tk.title })));
       }
-      
+
       // Sort descending by date
       metrics.tableEntries.sort((a, b) => b.date.localeCompare(a.date));
       // report any overdue tasks that had no time entries (might explain zero stats)
-      const overdueNoTime = filteredTasks.filter(t => {
-        const keys = Object.keys(t.timeSpentOnDay || {});
-        const { dueStart, dueEnd } = getDueBounds(t);
-        return (!t.isDone && dueStart !== null && dueEnd < rangeEndTime && keys.length === 0);
-      }).map(t => t.id);
+      const overdueNoTime = filteredTasks.filter(tk => {
+        const keys = Object.keys(tk.timeSpentOnDay || {});
+        const { dueStart, dueEnd } = getDueBounds(tk);
+        return (!tk.isDone && dueStart !== null && dueEnd < rangeEndTime && keys.length === 0);
+      }).map(tk => tk.id);
       if (overdueNoTime.length) {
         console.log("[sp-dashboard] overdue tasks with no time entries", overdueNoTime);
       }
@@ -1721,13 +2004,13 @@
         if (window.PluginAPI) {
           const activeTasks = await window.PluginAPI.getTasks() || [];
           console.log("[sp-dashboard] received activeTasks count", activeTasks.length);
-          const activeTasksDone = activeTasks.filter(t => t.isDone);
-          console.log("[sp-dashboard] activeTasks done:", JSON.stringify(activeTasksDone.map(t => ({ id: t.id, title: t.title, doneOn: t.doneOn })), null, 2));
-          
+          const activeTasksDone = activeTasks.filter(tk => tk.isDone);
+          console.log("[sp-dashboard] activeTasks done:", JSON.stringify(activeTasksDone.map(tk => ({ id: tk.id, title: tk.title, doneOn: tk.doneOn })), null, 2));
+
           const archivedTasks = await window.PluginAPI.getArchivedTasks() || [];
           console.log("[sp-dashboard] received archivedTasks count", archivedTasks.length);
-          const archivedTasksDone = archivedTasks.filter(t => t.isDone);
-          console.log("[sp-dashboard] archivedTasks done:", JSON.stringify(archivedTasksDone.map(t => ({ id: t.id, title: t.title, doneOn: t.doneOn })), null, 2));
+          const archivedTasksDone = archivedTasks.filter(tk => tk.isDone);
+          console.log("[sp-dashboard] archivedTasks done:", JSON.stringify(archivedTasksDone.map(tk => ({ id: tk.id, title: tk.title, doneOn: tk.doneOn })), null, 2));
           
           // Deduplicate tasks: use Map to ensure each task ID appears only once
           // Active tasks take precedence over archived (appear later in spread, so overwrite)
@@ -1750,7 +2033,7 @@
           if (duplicateIds.size > 0) {
             console.log("[sp-dashboard] duplicate task IDs found:", Array.from(duplicateIds));
           }
-          const finalDoneCount = cachedTasks.filter(t => t.isDone).length;
+          const finalDoneCount = cachedTasks.filter(tk => tk.isDone).length;
           console.log("[sp-dashboard] final cachedTasks done count:", finalDoneCount);
           cachedProjects = await window.PluginAPI.getAllProjects() || [];
           console.log("[sp-dashboard] received projects count", cachedProjects.length);
@@ -1789,6 +2072,7 @@
     syncPieCategories();
     syncAggRow();
     loadSession();
+    applyTranslations();
 
     // Initial Bootstrap & Fallback Data Generation
     setTimeout(() => {

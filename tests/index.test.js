@@ -61,7 +61,7 @@ describe("Date Range Reporter UI", () => {
 					parentId: null,
 					title: "Task 2",
 					isDone: false,
-					timeSpentOnDay: { [new Date().toISOString().split("T")[0]]: 3600000 }, // 1h
+					timeSpentOnDay: { [new Date().toLocaleDateString('en-CA')]: 3600000 }, // 1h
 				},
 			];
 			const mockProjects = [{ id: "p1", title: "Test Project" }];

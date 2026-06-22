@@ -1443,7 +1443,7 @@
           const toMonday = dow === 0 ? -6 : 1 - dow;
           const monday = new Date(d);
           monday.setDate(d.getDate() + toMonday);
-          const mondayStr = monday.toISOString().split('T')[0];
+          const mondayStr = toLocalDateStr(monday);
           const e = weekMap.get(mondayStr) || { sum: 0, count: 0, workdays: 0 };
           e.sum += chartData.data[i];
           e.count++;

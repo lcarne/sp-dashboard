@@ -54,7 +54,7 @@ describe("Date Range Reporter UI", () => {
 					title: "Task 1",
 					isDone: true,
 					doneOn: Date.now(),
-					timeSpentOnDay: { [new Date().toISOString().split("T")[0]]: 7200000 }, // 2h
+					timeSpentOnDay: { [new Date().toLocaleDateString('en-CA')]: 7200000 }, // 2h
 				},
 				{
 					id: "t2",

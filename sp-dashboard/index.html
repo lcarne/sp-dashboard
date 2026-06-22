@@ -1907,7 +1907,7 @@
         // add a row for overdue or late tasks that had no time entries
         if (taskTimeInRange === 0 && (isOverdue || isLate)) {
           const badge = isLate ? t('badge.late') : t('badge.overdue');
-          const dateStr = dueStart ? new Date(dueStart).toISOString().split('T')[0] : '';
+          const dateStr = task.dueDay || '';
           metrics.tableEntries.push({
             date: dateStr,
             projectName: pName,

@@ -693,4 +693,73 @@ describe("Date Range Reporter UI", () => {
 			expect(rows[0].textContent).not.toContain("Task Beta");
 		});
 	});
+
+	describe("Fill plan", () => {
+		const H = 3600000;
+		const sumDay = (d) => d.reduce((s, e) => s + e.hours, 0);
+
+		it("splits hours into full days plus leftovers, every day totalling hpd", () => {
+			// 11 days × 8h = 88h -> 44h / 28h / 16h
+			const plan = window.buildFillPlan(
+				[
+					{ name: "A", ms: 44 * H },
+					{ name: "B", ms: 28 * H },
+					{ name: "C", ms: 16 * H },
+				],
+				11,
+				8,
+			);
+			expect(plan.days.length).toBe(11);
+			plan.days.forEach((d) => expect(sumDay(d)).toBe(8));
+			const a = plan.projects.find((p) => p.name === "A");
+			expect(a.hours).toBe(44);
+			expect(a.parts).toEqual([
+				{ hours: 8, count: 5 },
+				{ hours: 4, count: 1 },
+			]);
+			const b = plan.projects.find((p) => p.name === "B");
+			expect(b.parts).toEqual([
+				{ hours: 8, count: 3 },
+				{ hours: 4, count: 1 },
+			]);
+			// both 4h leftovers share a single day
+			expect(plan.days.filter((d) => d.length > 1).length).toBe(1);
+		});
+
+		it("rounded project hours always add up to days × hpd", () => {
+			const plan = window.buildFillPlan(
+				[
+					{ name: "A", ms: 1 * H },
+					{ name: "B", ms: 1 * H },
+					{ name: "C", ms: 1 * H },
+				],
+				20,
+				7,
+				0.5,
+			);
+			const total = plan.projects.reduce((s, p) => s + p.hours, 0);
+			expect(total).toBe(140);
+			plan.days.forEach((d) => expect(sumDay(d)).toBe(7));
+			plan.projects.forEach((p) => expect((p.hours * 2) % 1).toBe(0));
+		});
+
+		it("falls back to half hours when a day isn't a whole number of hours", () => {
+			const plan = window.buildFillPlan(
+				[
+					{ name: "A", ms: 2 * H },
+					{ name: "B", ms: 1 * H },
+				],
+				3,
+				7.5,
+			);
+			expect(plan.step).toBe(0.5);
+			plan.days.forEach((d) => expect(sumDay(d)).toBe(7.5));
+			expect(plan.projects.map((p) => p.hours)).toEqual([15, 7.5]);
+		});
+
+		it("returns an empty plan without tracked time or days", () => {
+			expect(window.buildFillPlan([], 10, 8).days).toEqual([]);
+			expect(window.buildFillPlan([{ name: "A", ms: H }], 0, 8).days).toEqual([]);
+		});
+	});
 });
